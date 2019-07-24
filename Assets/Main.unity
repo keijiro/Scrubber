@@ -295,12 +295,19 @@ MonoBehaviour:
   _imageUI: {fileID: 776054596}
   _pages:
   - videoName: Test
+    loop: 0
     text: 
     image: {fileID: 0}
   - videoName: 
-    text: This is a test page.
+    loop: 0
+    text: Title<br>- Item 1<br>- Item 2
     image: {fileID: 0}
   - videoName: 
+    loop: 0
+    text: This is the second page. Blah blah blah...
+    image: {fileID: 0}
+  - videoName: 
+    loop: 0
     text: 
     image: {fileID: 2800000, guid: 054209f2ad54c30cf843fa62097d9dcc, type: 3}
 --- !u!4 &770361540
@@ -524,7 +531,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -200, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1242149356
 MonoBehaviour:
@@ -548,18 +555,22 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 120
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 100
-    m_Alignment: 4
+    m_MaxSize: 120
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'Title
+
+    - Item 1
+
+    - Item 2'
 --- !u!222 &1242149357
 CanvasRenderer:
   m_ObjectHideFlags: 0

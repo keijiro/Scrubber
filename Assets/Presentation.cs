@@ -7,6 +7,7 @@ namespace Scrubber
     public struct Page
     {
         public string videoName;
+        public bool loop;
         public string text;
         public Texture image;
     }
@@ -62,7 +63,7 @@ namespace Scrubber
                 _imageUI.enabled = false;
             }
 
-            _textUI.text = page.text;
+            _textUI.text = page.text.Replace("<br>", "\n");
         }
     }
 }
