@@ -22,9 +22,13 @@ namespace Scrubber
         VideoHandler _video;
         int _index;
 
+        Vector3 _mousePosition;
+
         void Start()
         {
             UpdatePage(_index);
+            Cursor.visible = false;
+            _mousePosition = Input.mousePosition;
         }
 
         void Update()
@@ -34,6 +38,11 @@ namespace Scrubber
 
             if (Input.GetKeyDown(KeyCode.RightArrow) && _index < _pages.Length - 1)
                 UpdatePage(++_index);
+
+            if ((Input.mousePosition - _mousePosition).magnitude > 40)
+                Cursor.visible = true;
+
+            _mousePosition = Input.mousePosition;
         }
 
         void UpdatePage(int index)
@@ -64,6 +73,10 @@ namespace Scrubber
             }
 
             _textUI.text = page.text.Replace("<br>", "\n");
+
+            FindObjectOfType<Pen>().Clear();
+
+            Cursor.visible = false;
         }
     }
 }

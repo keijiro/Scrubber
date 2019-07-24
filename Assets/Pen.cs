@@ -9,12 +9,15 @@ namespace Scrubber
         [SerializeField, HideInInspector] Shader _shader = null;
         [SerializeField] RenderTexture _renderTexture = null;
         [SerializeField] Color _color = Color.white;
+        [SerializeField] float _width = 0.01f;
 
         Material _material;
 
         public void OnDrag(BaseEventData baseData)
         {
             var data = (PointerEventData)baseData;
+            if (data.button != PointerEventData.InputButton.Left) return;
+
             data.Use();
 
             var area = data.pointerDrag.GetComponent<RectTransform>();
@@ -33,16 +36,36 @@ namespace Scrubber
 
             _material.SetVector("_Point0", p0);
             _material.SetVector("_Point1", p1);
+            _material.SetColor("_Color", _color);
+            _material.SetFloat("_Width", _width);
             _material.SetPass(0);
-            Graphics.DrawProceduralNow(MeshTopology.Lines, 2, 1);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 12, 1);
 
+            RenderTexture.active = prevRT;
+        }
+
+        public void OnPointerClick(BaseEventData baseData)
+        {
+            var data = (PointerEventData)baseData;
+            if (data.button == PointerEventData.InputButton.Right)
+            {
+                data.Use();
+                Clear();
+            }
+        }
+
+        public void Clear()
+        {
+            var prevRT = RenderTexture.active;
+            RenderTexture.active = _renderTexture;
+            GL.Clear(false, true, Color.clear);
             RenderTexture.active = prevRT;
         }
 
         void Start()
         {
             _material = new Material(_shader);
-            _material.color = _color;
+            Clear();
         }
 
         void OnDestroy()

@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
-  m_DragThreshold: 10
+  m_DragThreshold: 0
 --- !u!4 &601267443
 Transform:
   m_ObjectHideFlags: 0
@@ -600,6 +600,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1952392228}
+          m_MethodName: OnPointerClick
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1242149354
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shader: {fileID: 4800000, guid: 93046f93dbd053be28178a6a46fd1ab8, type: 3}
   _renderTexture: {fileID: 8400000, guid: 31c482a0abfaffe0b9c2ae1c4aed5fe2, type: 2}
-  _color: {r: 1, g: 0.009433985, b: 0.009433985, a: 1}
+  _color: {r: 1, g: 0.08962262, b: 0.5643615, a: 1}
+  _width: 0.01
 --- !u!4 &1952392229
 Transform:
   m_ObjectHideFlags: 0
