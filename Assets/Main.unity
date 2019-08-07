@@ -295,18 +295,22 @@ MonoBehaviour:
   _imageUI: {fileID: 776054596}
   _pages:
   - videoName: Test
-    loop: 0
+    autoPlay: 1
+    loop: 1
     text: 
     image: {fileID: 0}
   - videoName: 
+    autoPlay: 0
     loop: 0
     text: Title<br>- Item 1<br>- Item 2
     image: {fileID: 0}
   - videoName: 
+    autoPlay: 0
     loop: 0
     text: This is the second page. Blah blah blah...
     image: {fileID: 0}
   - videoName: 
+    autoPlay: 0
     loop: 0
     text: 
     image: {fileID: 2800000, guid: 054209f2ad54c30cf843fa62097d9dcc, type: 3}

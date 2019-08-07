@@ -7,6 +7,7 @@ namespace Scrubber
     public struct Page
     {
         public string videoName;
+        public bool autoPlay;
         public bool loop;
         public string text;
         public Texture image;
@@ -58,7 +59,7 @@ namespace Scrubber
             if (!string.IsNullOrEmpty(page.videoName))
             {
                 _video = Instantiate(_videoPrefab);
-                _video.Open(page.videoName);
+                _video.Open(page.videoName, page.autoPlay, page.loop);
             }
 
             if (page.image != null)
