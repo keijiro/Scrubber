@@ -1,20 +1,17 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
+using Path = System.IO.Path;
 
 namespace Scrubber
 {
-    [CustomEditor(typeof(Presentation))]
-    class PresentationEditor : Editor
+    [CustomEditor(typeof(Deck))]
+    class DeckEditor : Editor
     {
-        SerializedProperty _textUI;
-        SerializedProperty _imageUI;
         ReorderableList _pageList;
 
         void OnEnable()
         {
-            _textUI = serializedObject.FindProperty("_textUI");
-            _imageUI = serializedObject.FindProperty("_imageUI");
             _pageList = new ReorderableList(
                 serializedObject, serializedObject.FindProperty("_pages"),
                 true, true, true, true
@@ -70,13 +67,33 @@ namespace Scrubber
             serializedObject.Update();
 
             EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(_textUI);
-            EditorGUILayout.PropertyField(_imageUI);
-            EditorGUILayout.Space();
-
             _pageList.DoLayoutList();
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        [MenuItem("Assets/Create/Scrubber/Deck")]
+        public static void CreateDeckAsset()
+        {
+            // Make a proper path from the current selection.
+            var path = AssetDatabase.GetAssetPath(Selection.activeObject);
+
+            if (string.IsNullOrEmpty(path))
+                path = "Assets";
+            else if (Path.GetExtension(path) != "")
+                path = path.Replace(Path.GetFileName(path), "");
+
+            var assetPathName = AssetDatabase.GenerateUniqueAssetPath
+                (path + "/Deck.asset");
+
+            // Create a deck asset.
+            var asset = ScriptableObject.CreateInstance<Deck>();
+            AssetDatabase.CreateAsset(asset, assetPathName);
+            AssetDatabase.SaveAssets();
+
+            // Tweak the selection.
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
         }
     }
 }

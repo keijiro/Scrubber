@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 747cfd056312106b99676437265eb100
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _deck: {instanceID: 0}
+  - _videoPrefab: {fileID: 6390724130759654492, guid: 941c8bbdd5cdbef7e972fe99b3277e49,
+      type: 3}
+  - _textUI: {instanceID: 0}
+  - _imageUI: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,27 +3,26 @@ using UnityEngine.UI;
 
 namespace Scrubber
 {
-    [System.Serializable]
-    public struct Page
+    public sealed class Presenter : MonoBehaviour
     {
-        public string videoName;
-        public bool autoPlay;
-        public bool loop;
-        public string text;
-        public Texture image;
-    }
+        #region Editable attributes
 
-    public sealed class Presentation : MonoBehaviour
-    {
+        [SerializeField] Deck _deck = null;
         [SerializeField, HideInInspector] VideoHandler _videoPrefab = null;
         [SerializeField] Text _textUI = null;
         [SerializeField] RawImage _imageUI = null;
-        [SerializeField] Page[] _pages = null;
+
+        #endregion
+
+        #region Internal objects
 
         VideoHandler _video;
         int _index;
-
         Vector3 _mousePosition;
+
+        #endregion
+
+        #region MonoBehaviour implementation
 
         void Start()
         {
@@ -34,12 +33,16 @@ namespace Scrubber
 
         void Update()
         {
+            // Previous page
             if (Input.GetKeyDown(KeyCode.LeftArrow) && _index > 0)
                 UpdatePage(--_index);
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) && _index < _pages.Length - 1)
+            // Next page
+            var lastPage = _deck.pageCount - 1;
+            if (Input.GetKeyDown(KeyCode.RightArrow) && _index < lastPage)
                 UpdatePage(++_index);
 
+            // Enable the mouse cursor when it's moved.
             if ((Input.mousePosition - _mousePosition).magnitude > 40)
                 Cursor.visible = true;
 
@@ -48,20 +51,27 @@ namespace Scrubber
 
         void UpdatePage(int index)
         {
-            var page = _pages[index];
-
+            // Destroy the previous video player.
             if (_video != null)
             {
                 Destroy(_video.gameObject);
                 _video = null;
             }
 
+            // Clear pen drawing on the previous page.
+            FindObjectOfType<Pen>().Clear();
+
+            // Current page
+            var page = _deck.GetPage(index);
+
+            // Video element: Instantiate a video player if it exists.
             if (!string.IsNullOrEmpty(page.videoName))
             {
                 _video = Instantiate(_videoPrefab);
                 _video.Open(page.videoName, page.autoPlay, page.loop);
             }
 
+            // Image element
             if (page.image != null)
             {
                 _imageUI.texture = page.image;
@@ -73,11 +83,13 @@ namespace Scrubber
                 _imageUI.enabled = false;
             }
 
+            // Text element
             _textUI.text = page.text.Replace("<br>", "\n");
 
-            FindObjectOfType<Pen>().Clear();
-
+            // Hide the mouse cursor again.
             Cursor.visible = false;
         }
+
+        #endregion
     }
 }
