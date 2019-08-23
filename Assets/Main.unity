@@ -295,8 +295,8 @@ MonoBehaviour:
   _imageUI: {fileID: 776054596}
   _pages:
   - videoName: Test
-    autoPlay: 1
-    loop: 1
+    autoPlay: 0
+    loop: 0
     text: 
     image: {fileID: 0}
   - videoName: 

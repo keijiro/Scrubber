@@ -1,16 +1,4 @@
 {
-  "scopedRegistries": [
-    {
-      "name": "Unity",
-      "url": "https://packages.unity.com",
-      "scopes": [ "com.unity" ]
-    },
-    {
-      "name": "GitHub",
-      "url": "https://npm.pkg.github.com",
-      "scopes": [ "com.github" ]
-    }
-  ],
   "dependencies": {
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.timeline": "1.1.0",

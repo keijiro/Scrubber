@@ -1,0 +1,16 @@
+{
+    "name": "Scrubber.Editor",
+    "references": [
+        "GUID:73fce3fbc2e42e74ca4ef4d92829c3f7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
