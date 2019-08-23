@@ -8,7 +8,7 @@ namespace Scrubber
         #region Editable attributes
 
         [SerializeField] Deck _deck = null;
-        [SerializeField, HideInInspector] VideoHandler _videoPrefab = null;
+        [SerializeField] VideoHandler _videoPrefab = null;
         [SerializeField] Text _textUI = null;
         [SerializeField] RawImage _imageUI = null;
 
