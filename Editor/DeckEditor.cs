@@ -18,6 +18,7 @@ namespace Scrubber
             );
             _pageList.drawHeaderCallback = DrawHeader;
             _pageList.drawElementCallback = DrawElement;
+            _pageList.onAddCallback = OnAddElement;
         }
 
         (Rect, Rect, Rect, Rect, Rect) CalculateColumnRects(Rect r)
@@ -60,6 +61,21 @@ namespace Scrubber
             EditorGUI.PropertyField(columns.Item3, e.FindPropertyRelative("loop"), GUIContent.none);
             EditorGUI.PropertyField(columns.Item4, e.FindPropertyRelative("text"), GUIContent.none);
             EditorGUI.PropertyField(columns.Item5, e.FindPropertyRelative("image"), GUIContent.none);
+        }
+
+        void OnAddElement(ReorderableList list)
+        {
+            // Append a page element.
+            list.serializedProperty.arraySize += 1;
+            list.index = list.serializedProperty.arraySize - 1;
+
+            // Clear the page fields.
+            var e = list.serializedProperty.GetArrayElementAtIndex(list.index);
+            e.FindPropertyRelative("videoName").stringValue = null;
+            e.FindPropertyRelative("autoPlay").boolValue = false;
+            e.FindPropertyRelative("loop").boolValue = false;
+            e.FindPropertyRelative("text").stringValue = null;
+            e.FindPropertyRelative("image").objectReferenceValue = null;
         }
 
         public override void OnInspectorGUI()
