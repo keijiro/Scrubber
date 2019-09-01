@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3283169545543665454}
   - component: {fileID: 3283169545543665455}
+  - component: {fileID: 8503199316721036553}
   m_Layer: 0
   m_Name: Pen
   m_TagString: Untagged
@@ -47,6 +48,19 @@ MonoBehaviour:
   _renderTexture: {fileID: 8400000, guid: 31c482a0abfaffe0b9c2ae1c4aed5fe2, type: 2}
   _color: {r: 1, g: 0.08962262, b: 0.5643615, a: 1}
   _width: 0.01
+--- !u!114 &8503199316721036553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283169545543665448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9454baaa700c4d759b850a875eaeacc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _threshold: 0.025
 --- !u!1 &3283169546522088161
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747cfd056312106b99676437265eb100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deck: {fileID: 0}
+  _decks: []
   _videoPrefab: {fileID: 6390724130759654492, guid: 941c8bbdd5cdbef7e972fe99b3277e49,
     type: 3}
   _textUI: {fileID: 3283169546522088167}
