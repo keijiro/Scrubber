@@ -7,7 +7,7 @@ namespace Scrubber
     {
         #region Editable attributes
 
-        [SerializeField] Deck _deck = null;
+        [SerializeField] Deck[] _decks = null;
         [SerializeField] VideoHandler _videoPrefab = null;
         [SerializeField] Text _textUI = null;
         [SerializeField] RawImage _imageUI = null;
@@ -17,8 +17,39 @@ namespace Scrubber
         #region Internal objects
 
         VideoHandler _video;
-        int _index;
-        Vector3 _mousePosition;
+        (int deck, int page) _position;
+
+        #endregion
+
+        #region Private property and method
+
+        Deck CurrentDeck { get { return _decks[_position.deck]; } }
+
+        void MovePosition(int delta)
+        {
+            if (delta < 0 && _position.page == 0)
+            {
+                if (_position.deck > 0)
+                {
+                    // Go back to the previous deck.
+                    _position.deck--;
+                    _position.page = CurrentDeck.pageCount - 1;
+                }
+            }
+            else if (delta > 0 && _position.page == CurrentDeck.pageCount - 1)
+            {
+                if (_position.deck < _decks.Length - 1)
+                {
+                    // Go to the next deck.
+                    _position.deck++;
+                    _position.page = 0;
+                }
+            }
+            else
+            {
+                _position.page += delta;
+            }
+        }
 
         #endregion
 
@@ -26,30 +57,39 @@ namespace Scrubber
 
         void Start()
         {
-            UpdatePage(_index);
-            Cursor.visible = false;
-            _mousePosition = Input.mousePosition;
+            UpdatePage();
         }
 
         void Update()
         {
-            // Previous page
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && _index > 0)
-                UpdatePage(--_index);
-
-            // Next page
-            var lastPage = _deck.pageCount - 1;
-            if (Input.GetKeyDown(KeyCode.RightArrow) && _index < lastPage)
-                UpdatePage(++_index);
-
-            // Enable the mouse cursor when it's moved.
-            if ((Input.mousePosition - _mousePosition).magnitude > 40)
-                Cursor.visible = true;
-
-            _mousePosition = Input.mousePosition;
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                // Previous page
+                MovePosition(-1);
+                UpdatePage();
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                // Next page
+                MovePosition(+1);
+                UpdatePage();
+            }
+            else
+            {
+                // Check the deck selection hot keys.
+                for (var i = 0; i < _decks.Length; i++)
+                {
+                    if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                    {
+                        _position = (i, 0);
+                        UpdatePage();
+                        break;
+                    }
+                }
+            }
         }
 
-        void UpdatePage(int index)
+        void UpdatePage()
         {
             // Destroy the previous video player.
             if (_video != null)
@@ -62,7 +102,7 @@ namespace Scrubber
             FindObjectOfType<Pen>().Clear();
 
             // Current page
-            var page = _deck.GetPage(index);
+            var page = CurrentDeck.GetPage(_position.page);
 
             // Video element: Instantiate a video player if it exists.
             if (!string.IsNullOrEmpty(page.videoName))
@@ -86,7 +126,7 @@ namespace Scrubber
             // Text element
             _textUI.text = page.text.Replace("<br>", "\n");
 
-            // Hide the mouse cursor again.
+            // Hide the mouse cursor.
             Cursor.visible = false;
         }
 
