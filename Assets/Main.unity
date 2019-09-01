@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &720010113
+--- !u!1001 &151125285
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -189,7 +189,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3283169546998328264, guid: ad43325bcbfb69960b79648da73c8a2a,
         type: 3}
-      propertyPath: _deck
+      propertyPath: _decks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283169546998328264, guid: ad43325bcbfb69960b79648da73c8a2a,
+        type: 3}
+      propertyPath: _decks.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 0ca7042459c1dfbaa9d514cce8d17f4b,
         type: 2}
