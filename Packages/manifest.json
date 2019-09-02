@@ -1,10 +1,19 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "jp.keijiro"
+      ]
+    }
+  ],
   "dependencies": {
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.timeline": "1.1.0",
     "com.unity.ugui": "1.0.0",
-    "jp.keijiro.klak.hap": "https://github.com/keijiro/KlakHap.git#upm",
-    "jp.keijiro.klak.math": "https://github.com/keijiro/KlakMath.git#upm",
+    "jp.keijiro.klak.hap": "0.1.15",
+    "jp.keijiro.klak.math": "1.0.1",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
     "com.unity.modules.director": "1.0.0",
@@ -13,15 +22,5 @@
     "com.unity.modules.physics": "1.0.0",
     "com.unity.modules.physics2d": "1.0.0",
     "com.unity.modules.ui": "1.0.0"
-  },
-  "lock": {
-    "jp.keijiro.klak.hap": {
-      "hash": "64740a2c6356dbbd03201caefbb0fc42233dbfa3",
-      "revision": "upm"
-    },
-    "jp.keijiro.klak.math": {
-      "hash": "4776a3fe8ca109d57fcd2c0b5cc874a664966270",
-      "revision": "upm"
-    }
   }
 }
