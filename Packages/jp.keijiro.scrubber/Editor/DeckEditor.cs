@@ -91,25 +91,8 @@ namespace Scrubber
         [MenuItem("Assets/Create/Scrubber/Deck")]
         public static void CreateDeckAsset()
         {
-            // Make a proper path from the current selection.
-            var path = AssetDatabase.GetAssetPath(Selection.activeObject);
-
-            if (string.IsNullOrEmpty(path))
-                path = "Assets";
-            else if (Path.GetExtension(path) != "")
-                path = path.Replace(Path.GetFileName(path), "");
-
-            var assetPathName = AssetDatabase.GenerateUniqueAssetPath
-                (path + "/Deck.asset");
-
-            // Create a deck asset.
             var asset = ScriptableObject.CreateInstance<Deck>();
-            AssetDatabase.CreateAsset(asset, assetPathName);
-            AssetDatabase.SaveAssets();
-
-            // Tweak the selection.
-            EditorUtility.FocusProjectWindow();
-            Selection.activeObject = asset;
+            ProjectWindowUtil.CreateAsset(asset, "New Deck.asset");
         }
     }
 }

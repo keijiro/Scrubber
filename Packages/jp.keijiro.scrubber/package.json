@@ -1,0 +1,13 @@
+{
+    "author": "Keijiro Takahashi",
+    "dependencies": { },
+    "description": "An experimental presentation program with Unity",
+    "displayName": "Scrubber",
+    "keywords": [ "unity" ],
+    "license": "UNLICENSED",
+    "name": "jp.keijiro.scrubber",
+    "repository": "github:keijiro/Scrubber",
+    "unity": "2019.2",
+    "unityRelease": "1f1", 
+    "version": "0.1.5"
+}

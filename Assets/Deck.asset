@@ -36,5 +36,5 @@ MonoBehaviour:
   - videoName: 
     autoPlay: 0
     loop: 0
-    text: 
+    text: Test Image
     image: {fileID: 2800000, guid: 054209f2ad54c30cf843fa62097d9dcc, type: 3}
