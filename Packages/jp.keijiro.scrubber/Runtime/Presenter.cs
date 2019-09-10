@@ -51,6 +51,12 @@ namespace Scrubber
             }
         }
 
+        static KeyCode GetHotKeyCode(int index)
+        {
+            if (index < 9) return KeyCode.Alpha1 + index;
+            return KeyCode.A + (index - 9);
+        }
+
         #endregion
 
         #region MonoBehaviour implementation
@@ -79,7 +85,7 @@ namespace Scrubber
                 // Check the deck selection hot keys.
                 for (var i = 0; i < _decks.Length; i++)
                 {
-                    if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                    if (Input.GetKeyDown(GetHotKeyCode(i)))
                     {
                         _position = (i, 0);
                         UpdatePage();
