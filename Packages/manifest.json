@@ -7,11 +7,5 @@
         "jp.keijiro"
       ]
     }
-  ],
-  "dependencies": {
-    "com.unity.timeline": "1.2.11",
-    "com.unity.ugui": "1.0.0",
-    "jp.keijiro.klak.hap": "0.1.15",
-    "jp.keijiro.klak.math": "1.0.1"
-  }
+  ]
 }
