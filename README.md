@@ -11,4 +11,4 @@ smoothly synchronize the pace of the video and your speech.
 System Requirements
 -------------------
 
-- Unity 2019.2
+- Unity 2019.3
