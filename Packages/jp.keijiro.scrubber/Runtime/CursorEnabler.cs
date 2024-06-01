@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Scrubber
@@ -7,18 +8,19 @@ namespace Scrubber
     {
         [SerializeField] float _threshold = 0.025f;
 
-        Vector3 _prevPosition;
+        Vector2 _prevPosition;
 
         void Start()
         {
-            _prevPosition = Input.mousePosition;
+            _prevPosition = Mouse.current.position.value;
         }
 
         void Update()
         {
-            var diff = (Input.mousePosition - _prevPosition).magnitude;
+            var pos = Mouse.current.position.value;
+            var diff = (pos - _prevPosition).magnitude;
             if (diff > _threshold * Screen.height) Cursor.visible = true;
-            _prevPosition = Input.mousePosition;
+            _prevPosition = pos;
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Scrubber
@@ -51,10 +52,10 @@ namespace Scrubber
             }
         }
 
-        static KeyCode GetHotKeyCode(int index)
+        static Key GetKeyFromIndex(int index)
         {
-            if (index < 9) return KeyCode.Alpha1 + index;
-            return KeyCode.A + (index - 9);
+            if (index < 9) return Key.Digit1 + index;
+            return Key.A + (index - 9);
         }
 
         #endregion
@@ -68,13 +69,14 @@ namespace Scrubber
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            var keys = Keyboard.current;
+            if (keys.leftArrowKey.wasPressedThisFrame)
             {
                 // Previous page
                 MovePosition(-1);
                 UpdatePage();
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (keys.rightArrowKey.wasPressedThisFrame)
             {
                 // Next page
                 MovePosition(+1);
@@ -85,7 +87,7 @@ namespace Scrubber
                 // Check the deck selection hot keys.
                 for (var i = 0; i < _decks.Length; i++)
                 {
-                    if (Input.GetKeyDown(GetHotKeyCode(i)))
+                    if (keys[GetKeyFromIndex(i)].wasPressedThisFrame)
                     {
                         _position = (i, 0);
                         UpdatePage();

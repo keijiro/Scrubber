@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Klak.Hap;
 using Klak.Math;
 
@@ -25,9 +26,9 @@ namespace Scrubber
         {
             if (_player == null) return;
 
-            var wheel = Input.mouseScrollDelta.y;
+            var wheel = Mouse.current.scroll.y.value;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
                 _player.speed = 1 - _player.speed;
 
             if (wheel == 0 && _player.speed == 1)

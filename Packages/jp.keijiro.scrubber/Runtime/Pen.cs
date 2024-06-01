@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Scrubber
@@ -28,16 +29,15 @@ namespace Scrubber
             p0 = Vector3.Scale(p0, scale);
             p1 = Vector3.Scale(p1, scale);
 
-            var eraser = (data.button == PointerEventData.InputButton.Right);
-            eraser |= Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            var eraser = Keyboard.current.shiftKey.isPressed;
 
             var prevRT = RenderTexture.active;
             RenderTexture.active = _renderTexture;
 
             _material.SetVector("_Point0", p0);
             _material.SetVector("_Point1", p1);
-            _material.SetColor("_Color", _color);
-            _material.SetFloat("_Width", _width);
+            _material.SetColor("_Color", eraser ? Color.clear : _color);
+            _material.SetFloat("_Width", (eraser ? 4 : 1) * _width);
             _material.SetPass(0);
             Graphics.DrawProceduralNow(MeshTopology.Triangles, 12, 1);
 
