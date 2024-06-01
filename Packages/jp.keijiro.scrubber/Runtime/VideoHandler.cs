@@ -11,7 +11,7 @@ namespace Scrubber
 
         HapPlayer _player;
         float _time;
-        CdsTween _tween;
+        (float x, float v) _tween;
 
         public void Open(string name, bool autoPlay, bool loop)
         {
@@ -32,7 +32,7 @@ namespace Scrubber
 
             if (wheel == 0 && _player.speed == 1)
             {
-                _tween.Current = _time = _player.time;
+                _tween.x = _time = _player.time;
                  return;
             }
 
@@ -41,10 +41,9 @@ namespace Scrubber
             if (!_player.loop)
                 _time = Mathf.Clamp(_time, 0, (float)_player.streamDuration);
 
-            _tween.Speed = _tweenSpeed;
-            _tween.Step(_time);
+            _tween = CdsTween.Step(_tween, _time, _tweenSpeed);
 
-            _player.time = _tween.Current;
+            _player.time = _tween.x;
             _player.speed = 0;
         }
     }

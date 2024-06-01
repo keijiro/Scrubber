@@ -105,7 +105,7 @@ namespace Scrubber
             }
 
             // Clear pen drawing on the previous page.
-            FindObjectOfType<Pen>().Clear();
+            FindFirstObjectByType<Pen>().Clear();
 
             // Current page
             var page = CurrentDeck.GetPage(_position.page);

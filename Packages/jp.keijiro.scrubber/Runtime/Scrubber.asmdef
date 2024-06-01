@@ -1,8 +1,10 @@
 {
     "name": "Scrubber",
+    "rootNamespace": "",
     "references": [
         "GUID:63ee2b3a69c095740bf1e4ff4d11f294",
-        "GUID:39ed5662ff2b1b4c2a4578e668a4ac72"
+        "GUID:39ed5662ff2b1b4c2a4578e668a4ac72",
+        "GUID:d8b63aba1907145bea998dd612889d6b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -11,5 +13,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -7,5 +7,7 @@
         "jp.keijiro"
       ]
     }
-  ]
+  ],
+  "dependencies": {
+  }
 }
