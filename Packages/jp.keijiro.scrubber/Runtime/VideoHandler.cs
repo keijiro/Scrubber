@@ -26,7 +26,7 @@ namespace Scrubber
         {
             if (_player == null) return;
 
-            var wheel = Mouse.current.scroll.y.value;
+            var wheel = Mouse.current.scroll.x.value;
 
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
                 _player.speed = 1 - _player.speed;
