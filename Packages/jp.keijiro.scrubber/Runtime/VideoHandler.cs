@@ -7,16 +7,22 @@ namespace Scrubber
 {
     public sealed class VideoHandler : MonoBehaviour
     {
-        [SerializeField] float _wheelSpeed = 1;
-        [SerializeField] float _tweenSpeed = 5;
+        [field:SerializeField] public float WheelSpeed = 0.01f;
+        [field:SerializeField] public float TweenSpeed = 8;
+
+        [SerializeField, HideInInspector] Material _hapMaterial = null;
+        [SerializeField, HideInInspector] Material _hapQMaterial = null;
 
         HapPlayer _player;
+        Renderer _renderer;
         float _time;
         (float x, float v) _tween;
 
         public void Open(string name, bool autoPlay, bool loop)
         {
             _player = GetComponent<HapPlayer>();
+            _renderer = GetComponent<Renderer>();
+
             _player.Open(name + ".mov");
             _player.speed = autoPlay ? 1 : 0;
             _player.loop = loop;
@@ -37,15 +43,18 @@ namespace Scrubber
                  return;
             }
 
-            _time += wheel * _wheelSpeed;
+            _time += wheel * WheelSpeed;
 
             if (!_player.loop)
                 _time = Mathf.Clamp(_time, 0, (float)_player.streamDuration);
 
-            _tween = CdsTween.Step(_tween, _time, _tweenSpeed);
+            _tween = CdsTween.Step(_tween, _time, TweenSpeed);
 
             _player.time = _tween.x;
             _player.speed = 0;
+
+            _renderer.sharedMaterial =
+              _player.codecType == CodecType.HapQ ? _hapQMaterial : _hapMaterial;
         }
     }
 }

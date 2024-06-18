@@ -3,7 +3,9 @@ guid: 66e5a928ca411d2ce937ec9d864d409b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _hapMaterial: {fileID: 2100000, guid: 046a4c716415255d6a7d13b6b80cb565, type: 2}
+  - _hapQMaterial: {fileID: 2100000, guid: 9895fe944eb97488f9d46add06a3f99e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

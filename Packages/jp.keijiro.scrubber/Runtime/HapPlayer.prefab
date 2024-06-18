@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e5a928ca411d2ce937ec9d864d409b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wheelSpeed: 0.01
-  _tweenSpeed: 8
+  WheelSpeed: 0.01
+  TweenSpeed: 8
+  _hapMaterial: {fileID: 2100000, guid: 046a4c716415255d6a7d13b6b80cb565, type: 2}
+  _hapQMaterial: {fileID: 2100000, guid: 9895fe944eb97488f9d46add06a3f99e, type: 2}
 --- !u!114 &6390724130759654494
 MonoBehaviour:
   m_ObjectHideFlags: 0
