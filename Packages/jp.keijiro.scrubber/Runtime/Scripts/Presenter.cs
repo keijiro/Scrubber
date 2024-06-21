@@ -109,6 +109,13 @@ public sealed class Presenter : MonoBehaviour
                 }
             }
         }
+
+        if (_video != null)
+        {
+            // Wheel parameter update
+            _video.WheelSpeed = JogSpeed;
+            _video.TweenSpeed = JogSense;
+        }
     }
 
     void UpdatePage()
@@ -130,8 +137,6 @@ public sealed class Presenter : MonoBehaviour
         if (!string.IsNullOrEmpty(page.videoName))
         {
             _video = Instantiate(_videoPrefab);
-            _video.WheelSpeed = JogSpeed;
-            _video.TweenSpeed = JogSense;
             _video.Open(page.videoName, page.autoPlay, page.loop);
         }
 
