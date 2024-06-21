@@ -537,7 +537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3283169546998328271}
-  - component: {fileID: 3283169546998328264}
+  - component: {fileID: 6736302909856643033}
   m_Layer: 0
   m_Name: Presenter
   m_TagString: Untagged
@@ -564,7 +564,7 @@ Transform:
   - {fileID: 3283169545543665454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3283169546998328264
+--- !u!114 &6736302909856643033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -576,11 +576,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747cfd056312106b99676437265eb100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _decks: []
+  <JogSpeed>k__BackingField: 1
+  <JogSense>k__BackingField: 8
+  <Decks>k__BackingField: []
   _videoPrefab: {fileID: 6390724130759654492, guid: 941c8bbdd5cdbef7e972fe99b3277e49,
     type: 3}
-  _textUI: {fileID: 3283169546522088167}
-  _imageUI: {fileID: 3283169546988176463}
 --- !u!1 &3283169547577550239
 GameObject:
   m_ObjectHideFlags: 0

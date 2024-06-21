@@ -118,7 +118,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &151125285
+--- !u!1001 &391886864
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -126,26 +126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3283169546998328264, guid: ad43325bcbfb69960b79648da73c8a2a,
-        type: 3}
-      propertyPath: _decks.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3283169546998328264, guid: ad43325bcbfb69960b79648da73c8a2a,
-        type: 3}
-      propertyPath: '_decks.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 0ca7042459c1dfbaa9d514cce8d17f4b,
-        type: 2}
     - target: {fileID: 3283169546998328265, guid: ad43325bcbfb69960b79648da73c8a2a,
         type: 3}
       propertyPath: m_Name
       value: Presenter
-      objectReference: {fileID: 0}
-    - target: {fileID: 3283169546998328271, guid: ad43325bcbfb69960b79648da73c8a2a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3283169546998328271, guid: ad43325bcbfb69960b79648da73c8a2a,
         type: 3}
@@ -197,6 +181,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6736302909856643033, guid: ad43325bcbfb69960b79648da73c8a2a,
+        type: 3}
+      propertyPath: <Decks>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736302909856643033, guid: ad43325bcbfb69960b79648da73c8a2a,
+        type: 3}
+      propertyPath: '<Decks>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ca7042459c1dfbaa9d514cce8d17f4b,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -206,4 +201,4 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 151125285}
+  - {fileID: 391886864}

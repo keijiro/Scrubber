@@ -8,17 +8,19 @@ namespace Scrubber.Editor {
 [CustomEditor(typeof(Deck))]
 class DeckEditor : UnityEditor.Editor
 {
+    AutoProperty _pages;
+
     ReorderableList _pageList;
 
     void OnEnable()
     {
-        _pageList = new ReorderableList(
-            serializedObject, serializedObject.FindProperty("_pages"),
-            true, true, true, true
-        );
-        _pageList.drawHeaderCallback = DrawHeader;
-        _pageList.drawElementCallback = DrawElement;
-        _pageList.onAddCallback = OnAddElement;
+        AutoProperty.Scan(this);
+
+        _pageList = new ReorderableList
+          (serializedObject, _pages.Target, true, true, true, true)
+          { drawHeaderCallback = DrawHeader,
+            drawElementCallback = DrawElement,
+            onAddCallback = OnAddElement };
     }
 
     (Rect, Rect, Rect, Rect, Rect) CalculateColumnRects(Rect r)

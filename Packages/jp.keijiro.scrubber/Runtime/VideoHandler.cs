@@ -7,8 +7,8 @@ namespace Scrubber
 {
     public sealed class VideoHandler : MonoBehaviour
     {
-        [field:SerializeField] public float WheelSpeed = 0.01f;
-        [field:SerializeField] public float TweenSpeed = 8;
+        public float WheelSpeed { get; set; } = 1;
+        public float TweenSpeed { get; set; } = 8;
 
         [SerializeField, HideInInspector] Material _hapMaterial = null;
         [SerializeField, HideInInspector] Material _hapQMaterial = null;
@@ -43,7 +43,7 @@ namespace Scrubber
                  return;
             }
 
-            _time += wheel * WheelSpeed;
+            _time += wheel * WheelSpeed / 60;
 
             if (!_player.loop)
                 _time = Mathf.Clamp(_time, 0, (float)_player.streamDuration);

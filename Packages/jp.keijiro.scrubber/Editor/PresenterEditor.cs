@@ -7,22 +7,21 @@ namespace Scrubber.Editor {
 [CustomEditor(typeof(Presenter))]
 class PresenterEditor : UnityEditor.Editor
 {
-    SerializedProperty _jogSpeed;
-    SerializedProperty _jogSense;
+    AutoProperty JogSpeed;
+    AutoProperty JogSense;
+    AutoProperty Decks;
+
     ReorderableList _deckList;
 
     void OnEnable()
     {
-        _jogSpeed = serializedObject.FindProperty("<JogSpeed>k__BackingField");
-        _jogSense = serializedObject.FindProperty("<JogSense>k__BackingField");
+        AutoProperty.Scan(this);
 
         _deckList = new ReorderableList
-          (serializedObject,
-           serializedObject.FindProperty("<Decks>k__BackingField"),
-           true, true, true, true);
-        _deckList.drawHeaderCallback = DrawHeader;
-        _deckList.drawElementCallback = DrawElement;
-        _deckList.onRemoveCallback = OnRemoveElement;
+          (serializedObject, Decks.Target, true, true, true, true)
+          { drawHeaderCallback = DrawHeader,
+            drawElementCallback = DrawElement,
+            onRemoveCallback = OnRemoveElement };
     }
 
     void DrawHeader(Rect rect)
@@ -58,6 +57,8 @@ class PresenterEditor : UnityEditor.Editor
     {
         serializedObject.Update();
 
+        EditorGUILayout.PropertyField(JogSpeed);
+        EditorGUILayout.PropertyField(JogSense);
         EditorGUILayout.Space();
         _deckList.DoLayoutList();
 

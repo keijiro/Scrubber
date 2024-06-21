@@ -6,12 +6,24 @@ namespace Scrubber
 {
     public sealed class Presenter : MonoBehaviour
     {
-        #region Editable attributes
+        #region Public properties
 
-        [SerializeField] Deck[] _decks = null;
+        [field:SerializeField] public float JogSpeed { get; set; } = 1;
+        [field:SerializeField] public float JogSense { get; set; } = 8;
+        [field:SerializeField] public Deck[] Decks { get; set; } = null;
+
+        #endregion
+
+        #region Package asset references
+
         [SerializeField] VideoHandler _videoPrefab = null;
-        [SerializeField] Text _textUI = null;
-        [SerializeField] RawImage _imageUI = null;
+
+        #endregion
+
+        #region Hierarchy object references
+
+        Text _textUI;
+        RawImage _imageUI;
 
         #endregion
 
@@ -24,7 +36,7 @@ namespace Scrubber
 
         #region Private property and method
 
-        Deck CurrentDeck { get { return _decks[_position.deck]; } }
+        Deck CurrentDeck { get { return Decks[_position.deck]; } }
 
         void MovePosition(int delta)
         {
@@ -39,7 +51,7 @@ namespace Scrubber
             }
             else if (delta > 0 && _position.page == CurrentDeck.pageCount - 1)
             {
-                if (_position.deck < _decks.Length - 1)
+                if (_position.deck < Decks.Length - 1)
                 {
                     // Go to the next deck.
                     _position.deck++;
@@ -64,6 +76,8 @@ namespace Scrubber
 
         void Start()
         {
+            _textUI = GetComponentInChildren<Text>();
+            _imageUI = GetComponentInChildren<RawImage>();
             UpdatePage();
         }
 
@@ -85,7 +99,7 @@ namespace Scrubber
             else
             {
                 // Check the deck selection hot keys.
-                for (var i = 0; i < _decks.Length; i++)
+                for (var i = 0; i < Decks.Length; i++)
                 {
                     if (keys[GetKeyFromIndex(i)].wasPressedThisFrame)
                     {
@@ -116,6 +130,8 @@ namespace Scrubber
             if (!string.IsNullOrEmpty(page.videoName))
             {
                 _video = Instantiate(_videoPrefab);
+                _video.WheelSpeed = JogSpeed;
+                _video.TweenSpeed = JogSense;
                 _video.Open(page.videoName, page.autoPlay, page.loop);
             }
 
