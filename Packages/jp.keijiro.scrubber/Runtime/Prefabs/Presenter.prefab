@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3234021c28c2bc814babd0fb737c5f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <TargetTexture>k__BackingField: {fileID: 8400000, guid: 31c482a0abfaffe0b9c2ae1c4aed5fe2,
+    type: 2}
+  <StrokeColor>k__BackingField: {r: 1, g: 0, b: 0.83533955, a: 1}
+  <StrokeWidth>k__BackingField: 0.01
   _shader: {fileID: 4800000, guid: 93046f93dbd053be28178a6a46fd1ab8, type: 3}
-  _renderTexture: {fileID: 8400000, guid: 31c482a0abfaffe0b9c2ae1c4aed5fe2, type: 2}
-  _color: {r: 1, g: 0.08962262, b: 0.5643615, a: 1}
-  _width: 0.01
 --- !u!114 &8503199316721036553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9454baaa700c4d759b850a875eaeacc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _threshold: 0.025
+  <Threshold>k__BackingField: 0.025
 --- !u!1 &3283169546522088161
 GameObject:
   m_ObjectHideFlags: 0

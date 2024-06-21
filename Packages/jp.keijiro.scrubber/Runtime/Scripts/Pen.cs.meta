@@ -4,8 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - <TargetTexture>k__BackingField: {fileID: 8400000, guid: 31c482a0abfaffe0b9c2ae1c4aed5fe2,
+      type: 2}
   - _shader: {fileID: 4800000, guid: 93046f93dbd053be28178a6a46fd1ab8, type: 3}
-  - _renderTexture: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
