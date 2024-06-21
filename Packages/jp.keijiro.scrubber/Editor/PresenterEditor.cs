@@ -68,13 +68,15 @@ class PresenterEditor : UnityEditor.Editor
     [MenuItem("GameObject/Scrubber/Presenter", false, 10)]
     static void CreatePresenter()
     {
-        var path1 = "Packages/jp.keijiro.scrubber/Runtime/Presenter.prefab";
-        var path2 = "Assets/Scrubber/Runtime/Presenter.prefab";
+        var relpath = "Runtime/Prefabs/Presenter.prefab";
+        var path1 = "Packages/jp.keijiro.scrubber/" + relpath;
+        var path2 = "Assets/Scrubber/" + relpath;
 
         var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path1) ??
                      AssetDatabase.LoadAssetAtPath<GameObject>(path2);
 
         var go = PrefabUtility.InstantiatePrefab(prefab);
+        Undo.RegisterCreatedObjectUndo(go, "Create Presentor");
         Selection.activeGameObject = (GameObject)go;
     }
 }
