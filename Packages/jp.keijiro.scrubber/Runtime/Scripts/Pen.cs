@@ -29,6 +29,7 @@ public sealed class Pen : MonoBehaviour
         RenderTexture.active = TargetTexture;
         GL.Clear(false, true, Color.clear);
         RenderTexture.active = prevRT;
+        Cursor.visible = false;
     }
 
     #endregion
