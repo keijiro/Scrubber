@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 namespace Scrubber {
 
@@ -20,21 +21,9 @@ public sealed class Presenter : MonoBehaviour
 
     #endregion
 
-    #region Hierarchy object references
+    #region Position controller
 
-    Text _textUI;
-    RawImage _imageUI;
-
-    #endregion
-
-    #region Internal objects
-
-    VideoHandler _video;
     (int deck, int page) _position;
-
-    #endregion
-
-    #region Private property and method
 
     Deck CurrentDeck { get { return Decks[_position.deck]; } }
 
@@ -44,7 +33,7 @@ public sealed class Presenter : MonoBehaviour
         {
             if (_position.deck > 0)
             {
-                // Go back to the previous deck.
+                // Previous deck
                 _position.deck--;
                 _position.page = CurrentDeck.pageCount - 1;
             }
@@ -53,7 +42,7 @@ public sealed class Presenter : MonoBehaviour
         {
             if (_position.deck < Decks.Length - 1)
             {
-                // Go to the next deck.
+                // Next deck
                 _position.deck++;
                 _position.page = 0;
             }
@@ -64,10 +53,50 @@ public sealed class Presenter : MonoBehaviour
         }
     }
 
-    static Key GetKeyFromIndex(int index)
+    #endregion
+
+    #region UI controller
+
+    VideoHandler _video;
+
+    void UpdatePage()
     {
-        if (index < 9) return Key.Digit1 + index;
-        return Key.A + (index - 9);
+        // Current page
+        var page = CurrentDeck.GetPage(_position.page);
+
+        // UI document
+        var root = GetComponent<UIDocument>().rootVisualElement;
+
+        // Scribble reset
+        GetComponent<ScribbleBackend>().ClearCanvas();
+
+        // Mouse cursor reset
+        Cursor.visible = false;
+
+        // Existing video player termination
+        if (_video != null)
+        {
+            Destroy(_video.gameObject);
+            _video = null;
+        }
+
+        // Video player instantiation
+        if (!string.IsNullOrEmpty(page.videoName))
+        {
+            _video = Instantiate(_videoPrefab);
+            _video.Open(page.videoName, page.autoPlay, page.loop);
+        }
+
+        // Video element
+        root.Q<VisualElement>("video").style.backgroundImage =
+          _video == null ? null : Background.FromTexture2D(_video.VideoAsTexture);
+
+        // Image element
+        root.Q<VisualElement>("image").style.backgroundImage =
+          page.image == null ? null : Background.FromTexture2D(page.image as Texture2D);
+
+        // Text element
+        root.Q<Label>("text").text = page.text;
     }
 
     #endregion
@@ -75,11 +104,7 @@ public sealed class Presenter : MonoBehaviour
     #region MonoBehaviour implementation
 
     void Start()
-    {
-        _textUI = GetComponentInChildren<Text>();
-        _imageUI = GetComponentInChildren<RawImage>();
-        UpdatePage();
-    }
+      => UpdatePage();
 
     void Update()
     {
@@ -98,10 +123,10 @@ public sealed class Presenter : MonoBehaviour
         }
         else
         {
-            // Check the deck selection hot keys.
+            // Deck selection hot keys
             for (var i = 0; i < Decks.Length; i++)
             {
-                if (keys[GetKeyFromIndex(i)].wasPressedThisFrame)
+                if (keys[Key.Digit1 + i].wasPressedThisFrame)
                 {
                     _position = (i, 0);
                     UpdatePage();
@@ -112,51 +137,10 @@ public sealed class Presenter : MonoBehaviour
 
         if (_video != null)
         {
-            // Wheel parameter update
+            // Video player: Wheel parameters
             _video.WheelSpeed = JogSpeed;
             _video.TweenSpeed = JogSense;
         }
-    }
-
-    void UpdatePage()
-    {
-        // Destroy the previous video player.
-        if (_video != null)
-        {
-            Destroy(_video.gameObject);
-            _video = null;
-        }
-
-        // Clear pen drawing on the previous page.
-        FindFirstObjectByType<Pen>().Clear();
-
-        // Current page
-        var page = CurrentDeck.GetPage(_position.page);
-
-        // Video element: Instantiate a video player if it exists.
-        if (!string.IsNullOrEmpty(page.videoName))
-        {
-            _video = Instantiate(_videoPrefab);
-            _video.Open(page.videoName, page.autoPlay, page.loop);
-        }
-
-        // Image element
-        if (page.image != null)
-        {
-            _imageUI.texture = page.image;
-            _imageUI.enabled = true;
-        }
-        else
-        {
-            _imageUI.texture = null;
-            _imageUI.enabled = false;
-        }
-
-        // Text element
-        _textUI.text = page.text.Replace("<br>", "\n");
-
-        // Hide the mouse cursor.
-        Cursor.visible = false;
     }
 
     #endregion

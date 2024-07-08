@@ -12,8 +12,7 @@
     "version": "3.1.0",
     "dependencies": {
         "com.unity.inputsystem": "1.8.2",
-        "com.unity.timeline": "1.8.6",
-        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0",
         "jp.keijiro.klak.hap": "0.1.20",
         "jp.keijiro.klak.math": "2.1.0"
     }

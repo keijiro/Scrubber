@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="video" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; -unity-background-scale-mode: scale-to-fit; scale: 1 -1;" />
+    <engine:VisualElement name="image" style="-unity-background-scale-mode: scale-to-fit; position: absolute; top: 0; left: 0; right: 0; bottom: 0;" />
+    <engine:Label text="Section Title&lt;br&gt;- Item 1&lt;br&gt;- Item 2" name="text" style="-unity-font-definition: url(&quot;project://database/Packages/jp.keijiro.scrubber/Runtime/Font/Inter/Inter-Regular.ttf?fileID=12800000&amp;guid=b5ec65724a17c4615982ada1def031c3&amp;type=3#Inter-Regular&quot;); font-size: 80px; color: rgb(255, 255, 255); -unity-text-align: middle-left; margin-left: 150px; position: absolute; top: 0; left: 0; right: 0; bottom: 0;" />
+    <Scrubber.Scribble name="scribble" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;" />
+</engine:UXML>

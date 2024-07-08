@@ -1,4 +1,4 @@
-Shader "Hidden/Scrubber/Pen"
+Shader "Hidden/UITK/Scribble"
 {
     SubShader
     {
@@ -19,14 +19,15 @@ Shader "Hidden/Scrubber/Pen"
             float3 _Point1;
             float4 _Color;
             float _Width;
+            float _Aspect;
 
             float4 Vertex(uint vid : SV_VertexID) : SV_Position
             {
                 float3 va = normalize(_Point1 - _Point0);
                 float3 vb = cross(va, float3(0, 0, 1));
 
-                va *= _Width * float3(_ScreenParams.y * (_ScreenParams.z - 1), 1, 0);
-                vb *= _Width * float3(_ScreenParams.y * (_ScreenParams.z - 1), 1, 0);
+                va *= _Width * float3(1, _Aspect, 0);
+                vb *= _Width * float3(1, _Aspect, 0);
 
                 float3 v0 = _Point0 - va;
                 float3 v1 = _Point0 - vb;
