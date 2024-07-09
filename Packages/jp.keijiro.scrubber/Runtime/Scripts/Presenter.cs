@@ -70,9 +70,6 @@ public sealed class Presenter : MonoBehaviour
         // Scribble reset
         GetComponent<ScribbleBackend>().ClearCanvas();
 
-        // Mouse cursor reset
-        Cursor.visible = false;
-
         // Existing video player termination
         if (_video != null)
         {
