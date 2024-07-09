@@ -1,4 +1,4 @@
-Shader "Hidden/UITK/Scribble"
+Shader "Hidden/Scrubber/Scribble"
 {
     SubShader
     {
