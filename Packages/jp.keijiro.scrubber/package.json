@@ -9,7 +9,7 @@
     "repository": "github:keijiro/Scrubber",
     "unity": "6000.0",
     "unityRelease": "1f1", 
-    "version": "4.0.0",
+    "version": "4.0.1",
     "dependencies": {
         "com.unity.inputsystem": "1.8.2",
         "com.unity.modules.uielements": "1.0.0",
